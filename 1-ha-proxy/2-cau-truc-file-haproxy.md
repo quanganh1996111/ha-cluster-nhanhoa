@@ -189,3 +189,11 @@ listen web-backend:
 - `rise`: Số lần kiểm tra backend server thành công trước khi HAProxy đánh giá nó đang hoạt động bình thường và bắt đầu điều hướng request tới.
 
 - `fall`: Số lần kiểm tra backend server bị tính là thất bại trước khi HAProxy đánh giá nó xảy ra sự cố và không điều hướng request tới.
+
+## Nguồn tham khảo
+
+https://blog.cloud365.vn/linux/cau-truc-file-cau-hinh-haproxy/
+
+https://www.haproxy.com/blog/the-four-essential-sections-of-an-haproxy-configuration/
+
+https://www.haproxy.com/documentation/hapee/1-8r1/onepage/
