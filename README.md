@@ -1,0 +1,1 @@
+# Ghi chép về High Availability trên cụm OpenStack Nhân Hòa
