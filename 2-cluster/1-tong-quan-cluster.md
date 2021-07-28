@@ -1,4 +1,4 @@
-# High Availability: Tổng quan về Cluster
+# High Availability: Phần 1. Tổng quan về Cluster
 
 ## 1. Giới thiệu về Cluster
 
