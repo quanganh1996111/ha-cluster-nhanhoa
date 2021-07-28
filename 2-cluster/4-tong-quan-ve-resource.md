@@ -111,3 +111,59 @@ Các tham số cần lưu ý:
     - `stop_only`: Dừng tất cả các trường hợp hoạt động.
 
     - `stop_start`: Dừng tất cả các trường hợp hoạt động và thử khởi động lại.
+
+### 3.2. Tham số vận hành Resource
+
+Các tham số cần lưu ý trong quá trình vận hành Resource:
+
+- `id`: Định danh resource.
+
+- `name`: Hành động thực hiện (monitor, start, stop).
+
+- `interval`: Tần số thực hiện hành động (Mặc đinh = 0).
+
+- `timeout`: Thời gian chờ tối đa nếu xảy ra sự cố.
+
+- `on-fail`: Thao tác nếu phát hiện sự cố.
+
+    - `ignore`: Không phản ứng, bỏ qua lỗi.
+
+    - `block`: Không thực hiện thêm bất kỳ hoạt động nào khác trên resource.
+
+    - `stop`: Dừng hoạt động resource, không khởi động resource trên bất kỳ node nào khác.
+
+    - `restart`: Khởi động lại resource.
+
+    - `fence`: STONITH trên node mà resource đó bị lỗi.
+
+    - `standby`: Di chuyển tất cả các resource ra khỏi node xảy ra sự cố.
+
+- `enable`: Nếu thiết lập false, bỏ qua giám sát tài nguyên.
+
+Cấu trúc file:
+
+```
+pcs resource create <Tên resource> <Tham số 1> <Tham số 2 ..> op <tham số vận hành>
+```
+
+Ví dụ:
+
+```
+pcs resource create Virtual_IP IPaddr2 ip=10.10.10.89 cidr_netmask=24 op monitor interval=30s
+
+# Mô tả
+[root@node1 ~]# pcs resource show Web_Cluster-clone
+ Clone: Web_Cluster-clone
+  Meta Attrs: globally-unique=true # Metadata
+  Resource: Web_Cluster (class=ocf provider=heartbeat type=apache)
+   Attributes: configfile=/etc/httpd/conf/httpd.conf # Tham số tài nguyên
+   Operations: monitor interval=20s (Web_Cluster-monitor-interval-20s) # Tham số vận hình
+               start interval=0s timeout=40s (Web_Cluster-start-interval-0s)
+               stop interval=0s timeout=60s (Web_Cluster-stop-interval-0s)
+```
+
+## Nguồn tham khảo
+
+https://github.com/hocchudong/ghichep-pacemaker-corosync
+
+https://blog.cloud365.vn/linux/tong-quan-ve-resource/
