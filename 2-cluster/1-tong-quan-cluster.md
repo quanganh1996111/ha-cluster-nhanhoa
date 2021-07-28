@@ -39,3 +39,27 @@ Cluster thường được tìm thấy ở các hệ thống thanh toán trực 
 - **Resource**: Tài nguyên của cụm, cũng có thể hiểu là tài nguyên mà dịch vụ cung cấp
 
 - **STONITH/ Fencing**: STONITH là viết tắt của cụm từ Shoot Other Node In The Head đây là một kỹ thuật dành cho fencing. Fencing là kỹ thuật cô lập tài nguyên tại từng node trong Cluster. Mục tiêu STONITH là tắt hoặc khởi động lại node trong trường hợp Node trong trường hợp dịch vụ không thể khôi phục.
+
+## 4. Các cơ chế hoạt động
+
+### 4.1. Active - Active
+
+Active Active cluster được tạo ra từ ít nhất 2 node, cả 2 node chạy đồng thời xử lý cùng 1 loại dịch vụ. Mục đích chính của Active Active Cluster là tối ưu hóa cho hoạt động cân bằng tải (Load balancing). Hoạt động cân bằng tải (Load balancing) sẽ phân phối các tác vụ hệ thống tới tất cả các node bên trong cluster, tránh tình trạng các node xử lý tác vụ không cân bằng dẫn tới tình trạng quả tải. Bên cạnh đó, Active Active Cluster nâng cao thông lượng (thoughput) và thời gian phản hổi
+
+Khuyển cáo cho chế độ Active Active Cluster là các node trong cụm cần được cấu hình giống nhau tránh tình trạng phân mảnh cụm.
+
+<img src="https://imgur.com/nVgvXrQ.png">
+
+### 4.2. Active - Passive
+
+Giống cấu hình Active - Active, Active Passive Cluster cần ít nhất 2 node, tuy nhiên không phải tất cả các node đều sẵn sàng xử lý yêu cầu. VD: Nếu có 2 node thì 1 node sẽ chạy ở chế độ Active, node còn lại sẽ chạy ở chế độ passive hoặc standby.
+
+Passive Node sẽ hoạt động như 1 bản backup của Active Node. Trong trường hợp Active Node xảy ra vấn đề, Passive Node sẽ chuyển trạng thái thành active, tiếp quản xử lý các yêu cầu
+
+<img src="https://imgur.com/4WzaKyV.png">
+
+## Nguồn tham khảo
+
+https://blog.cloud365.vn/search/?q=cluster
+
+https://blog.cloud365.vn/linux/tong-quan-ve-cluster-p1/
