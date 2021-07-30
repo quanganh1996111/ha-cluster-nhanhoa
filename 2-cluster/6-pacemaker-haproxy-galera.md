@@ -10,4 +10,8 @@
 
 ## Phần 1. Chuẩn bị
 
-### 1. 
+### 1. Mô hình hoạt động
+
+### 2. Quy hoạch IP 
+
+<img src="https://imgur.com/pb75k0A.png">

@@ -6,3 +6,11 @@ MariaDB là một sản phẩm mã đóng tách ra từ mã mở do cộng đồ
 MariaDB được định hướng để duy trì khả năng tương thích cao với MySQL, để đảm bảo khả năng hỗ trợ về thư viện đồng thời kết hợp một cách tốt nhất với các API và câu lệnh của MySQL. MariaDB đã có công cụ hỗ lưu trữ XtraDB thay cho InnoDB.
 
 MariaDB Galera Cluster là giải pháp sao chép đồng bộ nâng cao tính sẵn sàng cho MariaDB. Galera hỗ trợ chế độ Active-Active tức có thể truy cập, ghi dữ liệu đồng thời trên tất các node MariaDB thuộc Galera Cluster.
+
+## Phần 1. Chuẩn bị
+
+### 1. Mô hình hoạt động
+
+### 2. Quy hoạch IP 
+
+<img src="https://imgur.com/pb75k0A.png">
