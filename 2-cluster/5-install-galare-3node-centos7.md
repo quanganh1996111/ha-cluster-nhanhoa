@@ -166,3 +166,9 @@ systemctl enable mariadb
 - Kiểm tra trạng thái tại Node 1:
 
 <img src="https://imgur.com/hOKyixC.png">
+
+## Nguồn tham khảo
+
+https://blog.cloud365.vn/linux/cai-dat-galera-mariadb/
+
+https://github.com/domanhduy/ghichep/blob/master/DuyDM/Cluster-HA/Cluster/docs/2.Cai-dat-galare-3node-centos7.md
