@@ -584,6 +584,10 @@ wsrep_sst_method=rsync
 - Restart lại các services:
 
 ```
+galera_new_cluster
+```
+
+```
 systemctl restart mariadb
 systemctl restart haproxy
 ```
