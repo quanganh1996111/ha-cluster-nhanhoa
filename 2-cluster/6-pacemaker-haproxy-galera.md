@@ -581,6 +581,16 @@ wsrep_sst_method=rsync
 [mariadb-10.2]
 ```
 
+- Trong bài lab database chưa có sự đọc ghi dữ liệu nên `seqno = -1` giống nhau ở các node. Tìm node có `seqno lớn nhất` để khởi tạo lại cluster.
+
+Để khởi tạo lại cluster, thay đổi giá trị `safe_to_bootstrap bằng 1` và chạy câu lệnh `galera_new_cluster`. Sau khi chạy câu lệnh `galera_new_cluster` cluster sẽ khởi tạo trở lại.
+
+```
+vi /var/lib/mysql/grastate.dat
+
+sửa safe_to_bootstrap: 0 -> safe_to_bootstrap: 1
+```
+
 - Restart lại các services:
 
 ```
