@@ -44,3 +44,36 @@ scp /var/lib/rabbitmq/.erlang.cookie root@node2:/var/lib/rabbitmq/.erlang.cookie
 
 scp /var/lib/rabbitmq/.erlang.cookie root@node3:/var/lib/rabbitmq/.erlang.cookie
 ```
+
+- Cấu hình policy HA Rabbit Cluster:
+
+```
+rabbitmqctl -p admin_vhost set_policy ha-all '^(?!amq\.).*' '{"ha-mode": "all"}'
+```
+
+- Kiểm tra trạng thái cluster:
+
+```
+rabbitmqctl cluster_status
+```
+
+```
+[root@node1 ~]# rabbitmqctl cluster_status
+Cluster status of node rabbit@node1
+[{nodes,[{disc,[rabbit@node1]}]},
+ {running_nodes,[rabbit@node1]},
+ {cluster_name,<<"rabbit@node1">>},
+ {partitions,[]},
+ {alarms,[{rabbit@node1,[]}]}]
+```
+
+- Khởi chạy app:
+
+```
+rabbitmqctl start_app
+```
+
+```
+[root@node1 ~]# rabbitmqctl start_app
+Starting node rabbit@node1
+```
