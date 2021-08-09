@@ -77,3 +77,106 @@ rabbitmqctl start_app
 [root@node1 ~]# rabbitmqctl start_app
 Starting node rabbit@node1
 ```
+
+### Thực hiện trên Node2 và Node3
+
+#### Trên Node2
+
+- Phân quyền file `/var/lib/rabbitmq/.erlang.cookie`
+
+```
+chown rabbitmq:rabbitmq /var/lib/rabbitmq/.erlang.cookie
+chmod 400 /var/lib/rabbitmq/.erlang.cookie
+```
+
+- Khởi động lại Dịch vụ:
+
+```
+systemctl restart rabbitmq-server.service
+```
+
+- Join cluster `node1`
+
+```
+rabbitmqctl stop_app
+rabbitmqctl join_cluster rabbit@node1
+rabbitmqctl start_app
+```
+
+<img src="https://imgur.com/N360HoC.png">
+
+#### Trên Node3
+
+- Phân quyền file `/var/lib/rabbitmq/.erlang.cookie`
+
+```
+chown rabbitmq:rabbitmq /var/lib/rabbitmq/.erlang.cookie
+chmod 400 /var/lib/rabbitmq/.erlang.cookie
+```
+
+- Khởi động lại Dịch vụ:
+
+```
+systemctl restart rabbitmq-server.service
+```
+
+- Join cluster `node1`
+
+```
+rabbitmqctl stop_app
+rabbitmqctl join_cluster rabbit@node1
+rabbitmqctl start_app
+```
+
+<img src="https://imgur.com/X6qkdl4.png">
+
+#### Kiểm tra trên tất cả các node
+
+```
+[root@node1 ~]# rabbitmqctl cluster_status
+Cluster status of node rabbit@node1
+[{nodes,[{disc,[rabbit@node1,rabbit@node2,rabbit@node3]}]},
+ {running_nodes,[rabbit@node3,rabbit@node2,rabbit@node1]},
+ {cluster_name,<<"rabbit@node1">>},
+ {partitions,[]},
+ {alarms,[{rabbit@node3,[]},{rabbit@node2,[]},{rabbit@node1,[]}]}]
+```
+
+```
+[root@node2 ~]# rabbitmqctl cluster_status
+Cluster status of node rabbit@node2
+[{nodes,[{disc,[rabbit@node1,rabbit@node2,rabbit@node3]}]},
+ {running_nodes,[rabbit@node3,rabbit@node1,rabbit@node2]},
+ {cluster_name,<<"rabbit@node1">>},
+ {partitions,[]},
+ {alarms,[{rabbit@node3,[]},{rabbit@node1,[]},{rabbit@node2,[]}]}]
+```
+
+```
+[root@node3 ~]# rabbitmqctl cluster_status
+Cluster status of node rabbit@node3
+[{nodes,[{disc,[rabbit@node1,rabbit@node2,rabbit@node3]}]},
+ {running_nodes,[rabbit@node1,rabbit@node2,rabbit@node3]},
+ {cluster_name,<<"rabbit@node1">>},
+ {partitions,[]},
+ {alarms,[{rabbit@node1,[]},{rabbit@node2,[]},{rabbit@node3,[]}]}]
+```
+
+#### Kích hoạt plugin rabbit management
+
+- Thực hiện trên tất cả các Node
+
+```
+rabbitmq-plugins enable rabbitmq_management
+chown -R rabbitmq:rabbitmq /var/lib/rabbitmq
+```
+
+- Truy cập giao diện web quản lý rabbitmq
+
+```
+http://IP:15672
+```
+
+Tài khoản: `admin / nhcluster`
+
+<img src="https://imgur.com/G86U2rW.png">
