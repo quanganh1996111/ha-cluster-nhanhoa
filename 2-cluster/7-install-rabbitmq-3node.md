@@ -180,3 +180,7 @@ http://IP:15672
 Tài khoản: `admin / nhcluster`
 
 <img src="https://imgur.com/G86U2rW.png">
+
+## Nguồn tham khảo
+
+https://github.com/domanhduy/ghichep/blob/master/DuyDM/Cluster-HA/Cluster/docs/6.Cai-dat-rabitmq-3node-centos7.md
