@@ -31,8 +31,8 @@ sudo rabbitmqctl status|grep rabbit
 - Tạo User cho App (nhcluster), phân quyền:
 
 ```
-rabbitmqctl add_user admin nhcluster
-rabbitmqctl set_user_tags admin administrator
+rabbitmqctl add_user admin nhcluster //Tạo user admin/nhcluster
+rabbitmqctl set_user_tags admin administrator //Phân quyền administrator
 rabbitmqctl add_vhost admin_vhost
 rabbitmqctl set_permissions -p admin_vhost admin ".*" ".*" ".*"
 ```
